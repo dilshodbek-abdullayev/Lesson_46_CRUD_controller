@@ -47,6 +47,7 @@ namespace Lesson_46_CRUD_controller.Controllers
                     $"values(@Name,@Description,@Photopath)";
                 connection.Open();
                 NpgsqlCommand command = new NpgsqlCommand(query,connection);
+
             }
         }
     }

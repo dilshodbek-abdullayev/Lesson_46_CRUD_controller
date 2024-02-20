@@ -1,0 +1,6 @@
+@Lesson_46_CRUD_controller_HostAddress = http://localhost:5019
+
+GET {{Lesson_46_CRUD_controller_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

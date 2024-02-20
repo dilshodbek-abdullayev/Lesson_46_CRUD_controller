@@ -12,7 +12,7 @@ namespace Lesson_46_CRUD_controller.Controllers
         private readonly string CONNECTION_STRING;
         public ADONetController()
         {
-            CONNECTION_STRING = "Host:=localhost;port=5432;Database=HTTP;User Id=postgres;Password=abdullayev;";
+            CONNECTION_STRING = "Host=localhost;Port=5432;Database=HTTP;User Id=postgres;Password=abdullayev;";
         }
         [HttpGet]
         public List<string> Get()
@@ -47,7 +47,12 @@ namespace Lesson_46_CRUD_controller.Controllers
                     $"values(@Name,@Description,@Photopath)";
                 connection.Open();
                 NpgsqlCommand command = new NpgsqlCommand(query,connection);
+                command.Parameters.AddWithValue("name", name);
+                command.Parameters.AddWithValue("description", description);
+                command.Parameters.AddWithValue ("PhotoPath", PhotoPath);
+                int status = command.ExecuteNonQuery();
 
+                return $"Post status [=> {status}";
             }
         }
     }

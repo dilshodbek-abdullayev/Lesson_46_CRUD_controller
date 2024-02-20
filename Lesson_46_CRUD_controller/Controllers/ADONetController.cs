@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Lesson_46_CRUD_controller.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ADONetController : ControllerBase
     {

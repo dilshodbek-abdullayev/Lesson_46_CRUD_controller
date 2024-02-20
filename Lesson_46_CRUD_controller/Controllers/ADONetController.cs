@@ -68,5 +68,35 @@ namespace Lesson_46_CRUD_controller.Controllers
                 return $"Put status [->{status}";
             }
         }
+        [HttpPatch]
+
+        public string Patch(int id,string name)
+        {
+            using (NpgsqlConnection connection= new NpgsqlConnection(CONNECTION_STRING))
+            {
+                string query = $"update products set name =@name where id = @id";
+                connection.Open();
+                NpgsqlCommand command = new NpgsqlCommand( query , connection);
+
+                command.Parameters.AddWithValue("id", id);
+                command.Parameters.AddWithValue ("name", name);
+                int status = command.ExecuteNonQuery();
+                return $"Patch status [=>{status}";
+            }
+        }
+        [HttpDelete]
+        public string Delete(int id)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(CONNECTION_STRING))
+            {
+                string query = $"delete from products where id =@id";
+                connection.Open();
+                NpgsqlCommand command = new NpgsqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("id", id);
+                int status = command.ExecuteNonQuery();
+                return $"Delete status [=>{status}";
+            }
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace Lesson_46_CRUD_controller.Controllers
                 int status = connection.Execute(query, new
                 {
                     id,
-                    name = name,
+                    name = products.Name,
                     description = products.Description,
                     photopath = products.PhotoPath
                 });
@@ -67,6 +67,19 @@ namespace Lesson_46_CRUD_controller.Controllers
         }
 
         [HttpDelete]
+        public string Delete(int id)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(CONNECTION_STRING))
+            {
+                string query = "delete from products where id = @id";
+
+                int status = connection.Execute(query, new
+                {
+                    id
+                });
+                return $"Delete status [=> {status}";
+            }
+        }
 
     }
 }
